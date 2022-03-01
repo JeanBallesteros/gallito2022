@@ -23,7 +23,7 @@ class PostController extends Controller
 
         $posts = $user->posts() //Entrega
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->simplePaginate(2);
 
         return view('posts.index', compact('posts', 'user')); //Deja pasar la variable posts.
     }
