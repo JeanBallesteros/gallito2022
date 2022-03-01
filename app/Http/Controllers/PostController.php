@@ -17,7 +17,11 @@ class PostController extends Controller
     {
         //$user = User::find(User $user)
         //echo "Hola.".$user->$name;
-        $posts = Post::where('user_id', $user->id)
+        /* $posts = Post::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get(); */
+
+        $posts = $user->posts() //Entrega
             ->orderBy('created_at', 'desc')
             ->get();
 
