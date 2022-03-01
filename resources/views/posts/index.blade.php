@@ -17,5 +17,7 @@
                 El usuario no ha publicado mensajes.
             </div>
         @endforelse
+
+        {{ $posts->links() }}
     </div>
 @endsection
