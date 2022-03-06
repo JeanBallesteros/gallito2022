@@ -14,19 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
+
+Route::get('/', [App\Http\Controllers\UserController::class, 'index']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-/* Route::get('/ver/usuario/{user}', [App\Http\Controllers\PostController::class, 'index']); */
 Route::get('/u/{user}', [App\Http\Controllers\PostController::class, 'index']);
-/* Route::get('/{user}', [App\Http\Controllers\UserController::class, 'index']); */
 
-Route::resource('posts', App\Http\Controllers\PostController::class)
+Route::resource('/posts', App\Http\Controllers\PostController::class)
     ->except(['index']);
-/* Route::resource('users', App\Http\Controllers\UserController::class)
-    ->except(['index']); */
+
+Route::resource('/users', App\Http\Controllers\UserController::class)
+    ->except(['index']);

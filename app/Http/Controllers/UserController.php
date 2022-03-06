@@ -6,6 +6,9 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserCreateRequest;
 
 class UserController extends Controller
 {
@@ -16,8 +19,22 @@ class UserController extends Controller
      */
     public function index(User $user)
     {
+        /* $rows = 'valor';
         $users = DB::table('users')->get();
-        return view('users.index', compact('user')); //Deja pasar la variable posts.
+        return view('welcome', compact('users')); //Deja pasar la variable posts. */
+
+        /* $users = User::orderBy('id', 'ASC');
+        return view('welcome')->with('users', $users); */
+
+        /* return view('/welcome')-with('rows', $users); */
+
+        $users = DB::table('users')->get();
+        /* dd($users); */
+
+        $title = 'Listado Usuarios';
+
+        return view('welcome', compact('title', 'users'));
+
     }
 
     /**
@@ -27,7 +44,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -36,9 +53,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
-        //
+        $user = new User();
+        $user->fill($request->input());
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        /* dd($request->input()); */
+        return redirect(route('home')); // url('/home') o route('home')
     }
 
     /**
@@ -47,9 +70,14 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        /* dd($user);
+        $title = 'Listado Usuarios'; */
+
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -72,7 +100,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->user()->fill([
+            'password' => Hash::make($request->newPassword)
+        ])->save();
     }
 
     /**

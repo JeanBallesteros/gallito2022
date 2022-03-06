@@ -24,7 +24,7 @@ class PostsSeeder extends Seeder
 
         $p = new Post();
         $p->content = "Cualquier cosa #2";
-        $p->user_id = 1;
+        $p->user_id = 2;
         $p->save();
 
 
@@ -36,7 +36,7 @@ class PostsSeeder extends Seeder
 
         $p = new Post();
         $p->content = "Cualquier cosa #4";
-        $p->user_id = 1;
+        $p->user_id = 3;
         $p->save();
 
 
