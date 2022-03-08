@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostCreateRequest;
+use Symfony\Component\Console\Input\Input;
 
 class PostController extends Controller
 {
@@ -27,6 +28,8 @@ class PostController extends Controller
         $posts = $user->posts() //Entrega
             ->orderBy('created_at', 'desc')
             ->simplePaginate(2);
+
+            /* dd($posts); */
 
         return view('posts.index', compact('posts', 'user')); //Deja pasar la variable posts.
     }
@@ -67,7 +70,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        
+
     }
 
     /**
@@ -78,7 +81,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        echo "Hola, bro";
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -88,9 +91,13 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostCreateRequest $request, Post $post)
     {
-        //
+        //Actualizar
+        $post->fill($request->input());
+        $post->save();
+
+        return redirect(route('user.posts', $post->user_id));
     }
 
     /**

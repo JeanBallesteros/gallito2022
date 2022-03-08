@@ -17,19 +17,16 @@
                     {{ __('You are logged in!') }}
                 </div> --}}
 
-                <div class="card-body">
+                {{-- <div class="card-body">
                     @forelse ($posts as $post)
                         <div class="card mb-2">
                             <div class="card-body">
-                                {{-- <h5 class="card-title">{{ $user->name }}</h5> --}}
                                 <h5 class="card-title">
                                     @foreach ($users as $user)
-                                        {{-- <h4>Bro. {{ $user->$id }}</h4> --}}
                                         @if ($post->user_id)
                                             @if ($post->user_id == $user->id)
                                                 <h5 class="card-title">{{ $user->name }}</h5>
                                             @endif
-                                            {{-- <h5 class="card-title">{{ $user->name }}</h5> --}}
                                         @endif
                                     @endforeach
                                 </h5>
@@ -42,9 +39,29 @@
                             No hay posts.
                         </div>
                     @endforelse
+                </div> --}}
 
-                    {{ $posts->links() }}
+
+
+                <div class="card-body">
+                    @forelse ($posts as $post)
+                        <h5 class="card-title">
+                            @include('posts.subview-home')
+                        </h5>
+                        {{-- <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at/* ->diffForHumans() */}}</h6>
+                        <p class="card-text">{{ $post->content }}</p> --}}
+                    @empty
+                        <div class="alert alert-info" role="alert">
+                            No hay posts.
+                        </div>
+                    @endforelse
                 </div>
+
+
+
+
+
+
             </div>
         </div>
     </div>

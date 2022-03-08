@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/u/{user}', [App\Http\Controllers\PostController::class, 'index']);
+Route::get('/u/{user}', [App\Http\Controllers\PostController::class, 'index'])->name('user.posts');
 
 Route::resource('/posts', App\Http\Controllers\PostController::class)
     ->except(['index']);

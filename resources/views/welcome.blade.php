@@ -77,8 +77,12 @@
                 <div class="card-body">
                     <ul>
                         @forelse($users as $user)
-                            <li>{{ $user->name }}</li>
-                            <a href="{{ url('/users/'.$user->id) }}">Ver detalles</a>
+                            <a href="{{ url('/u/'.$user->id) }}">
+                                <li>
+                                    <i class="fa-solid fa-circle-user"></i>   {{ $user->name }}
+                                </li>
+                            </a>
+                            {{-- <a href="{{ url('/users/'.$user->id) }}">Ver detalles</a> --}}
                         @empty
                             <li>No hay usuarios registrados.</li>
                         @endforelse
@@ -89,4 +93,3 @@
     </div>
 </div>
 @endsection
-

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PostCreateRequest;
 
 class HomeController extends Controller
 {
@@ -26,26 +28,36 @@ class HomeController extends Controller
      */
     public function index(User $user)
     {
-        /* $posts = $user->posts() //Entrega
-            ->orderBy('created_at', 'desc')
-            ->simplePaginate(2);
 
-        return view('posts.index', compact('posts', 'user')); //Deja pasar la variable posts. */
-
-        $posts = DB::table('posts')
-            ->orderBy('created_at', 'desc')
-            ->simplePaginate(3);
+        $posts = DB::table('posts')->where('user_id', Auth::id()) //Entrega
+            ->orderBy('created_at', 'desc')->limit(10)->get();
 
         /* dd($posts); */
 
+        return view('/home', compact('posts')); //Deja pasar la variable posts.
 
+
+
+        /* $posts = DB::table('posts')
+            ->orderBy('created_at', 'desc')->limit(2)
+            ->get();
+
+        dd($posts);
         $users = User::all();
-        /* $posts = $user->posts() //Entrega
-            ->orderBy('created_at', 'desc')
-            ->simplePaginate(3); */
-
-        /* dd($users); */
-
-        return view('/home', compact('posts', 'users'));
+        return view('/home', compact('posts', 'users')); */
     }
+
+
+
+
+
+
+
+    /* $posts = DB::table('posts')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        dd($posts);
+        $users = User::all();
+        return view('/home', compact('posts', 'users')); */
 }

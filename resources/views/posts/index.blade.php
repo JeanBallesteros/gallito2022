@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h1>Publicaciones de {{ $user->name }}</h1></div>
+                <div class="card-header">
+                    <h1>Publicaciones de {{ $user->name }}</h1>
+                </div>
 
                 <div class="card-body">
                     @forelse ($posts as $post)

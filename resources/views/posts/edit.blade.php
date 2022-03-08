@@ -10,10 +10,10 @@
                 <div class="card-body">
                     @include('layouts.subview-form-errors')
 
-                    {!! Form::open(['route' => 'posts.store', 'method' => 'post']) !!}
+                    {!! Form::model($post, ['method' => 'put','route' => ['posts.update', $post->id]]) !!}
                         @include('posts.subview-post-fields')
 
-                        <button type="submit" class="btn btn-primary">Crear</button>
+                        <button type="submit" class="btn btn-primary">Editar</button>
                     {!! Form::close() !!}
                 </div>
             </div>

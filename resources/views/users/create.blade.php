@@ -9,15 +9,7 @@
                     <h1>Crear un usuario</h1>
                 </div>
 
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                @include('layouts.subview-form-errors')
 
                 <div class="card-body">
                     {!! Form::open(['route' => 'users.store', 'method' => 'user']) !!}

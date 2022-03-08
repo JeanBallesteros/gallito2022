@@ -54,13 +54,35 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Publicaciones
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('posts.create') }}">
+                                        Crear Publicación
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('home' , Auth::user()->id) }}">
+                                        Ver Recientes
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('user.posts', Auth::user()->id) }}">
+                                        Mis Publicaciones
+                                    </a>
+
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">
+                                        Perfil
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -83,7 +105,7 @@
 <footer class="bg-light text-center text-lg-start">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        Desarrollado en Programación Backend por Jean Ballesteros © 2022 Copyright:
+        Desarrollado en Programación Backend por Jean y Natalia  © 2022 Copyright:
         <a class="text-dark" href="https://www.autonoma.edu.co/">UAM</a>
     </div>
     <!-- Copyright -->
