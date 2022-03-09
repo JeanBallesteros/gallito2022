@@ -20,27 +20,39 @@
 
 <div class="card mb-3">
     <div class="card-body">
-        <div class="row">
-            <div class="col s10" >
+        <div class="d-flex d-flex justify-content-between">
+            <div class="" style=''>
                 <h5 class="card-title">
                     <i class="fa-solid fa-clipboard"></i>
                     {{ $user->name }}
                 </h5>
             </div>
-            <div class="col s2" style='text-align:right'>
+            <div class="d-flex d-flex justify-content-between">
                 @if (Auth::id() === $user->id)
-                    <a href="{{ route('posts.edit', $post->id) }}">
-                        <i class="fa-solid fa-pen-to-square" title="Editar Post"></i>
-                    </a>
+                    <div class="" style=''>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm">
+                            <i class="fa-solid fa-pen-to-square" title="Editar Post"></i>
+                        </a>
+                    </div>
+                    <div>
+                        {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'delete']) !!}
 
-                    <a href="{{ route('posts.destroy', $post->id) }}">
-                        <i class="fa-solid fa-trash-can" title="Eliminar Post"></i>
-                    </a>
+                            {!! Form::button('<i class="fa-solid fa-trash-can"></i>', [
+                                'type' => 'submit',
+                                'title' => "Remover post",
+                                'class' => 'btn btn-danger btn-sm',
+                                'onclick' => "return confirm('¿Está seguro de remover este post?\n\nTenga en cuenta que esta acción no se puede deshacer.')"
+                            ]) !!}
+
+                        {!! Form::close() !!}
+                    </div>
                 @endif
+
+                {{-- <a href="http://www.google.com" onclick="return confirm('¿Está seguro?');">Google</a> --}}
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4"> {{-- Espaciado con mt-4 en la parte superior del div--}}
             <div class="col s6" >
                 <h6 class="card-subtitle mb-2 text-muted"> {{ $post->created_at->format('d-m-Y') }}</h6>
             </div>

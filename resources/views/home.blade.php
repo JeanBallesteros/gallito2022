@@ -46,7 +46,7 @@
                 <div class="card-body">
                     @forelse ($posts as $post)
                         <h5 class="card-title">
-                            @include('posts.subview-home')
+                            @include('subview-home')
                         </h5>
                         {{-- <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at/* ->diffForHumans() */}}</h6>
                         <p class="card-text">{{ $post->content }}</p> --}}

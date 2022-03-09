@@ -108,6 +108,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect(route('user.posts', $post->user_id));
     }
 }
