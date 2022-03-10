@@ -88,7 +88,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -98,11 +98,18 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserCreateRequest $request, User $user)
     {
-        $request->user()->fill([
+
+        $user->fill($request->input());
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        /* $request->user()->fill([
             'password' => Hash::make($request->newPassword)
-        ])->save();
+        ])->save(); */
+
+        return redirect(route('home'));
     }
 
     /**

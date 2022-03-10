@@ -5,13 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h1>Editar una nueva publicación</h1></div>
+                <div class="card-header">
+                    <h1>Editar un usuario</h1>
+                </div>
+
+                @include('layouts.subview-form-errors')
 
                 <div class="card-body">
-                    @include('layouts.subview-form-errors')
-
-                    {!! Form::model($post, ['method' => 'put','route' => ['posts.update', $post->id]]) !!}
-                        @include('posts.subview-post-fields')
+                    {!! Form::model($user, ['method' => 'put','route' => ['users.update', $user->id]]) !!}
+                        @include('users.subview-user-fields')
 
                         <button type="submit" class="btn btn-primary">Editar</button>
                     {!! Form::close() !!}
@@ -21,3 +23,4 @@
     </div>
 </div>
 @endsection
+

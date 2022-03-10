@@ -13,16 +13,8 @@
 
                 <div class="card-body">
                     {!! Form::open(['route' => 'users.store', 'method' => 'user']) !!}
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nombre:</label>
-                            {!! Form::text('name', '', ['class' => 'form-control', 'rows' => 3]); !!}
-
-                            <label for="email" class="form-label">Email:</label>
-                            {!! Form::text('email', '', ['class' => 'form-control', 'rows' => 3]); !!}
-
-                            <label for="password" class="form-label">Contraseña:</label>
-                            {!! Form::password('password', ['class' => 'form-control', 'rows' => 3]); !!}
-                        </div>
+                        @include('users.subview-user-fields')
+                        
                         <button type="submit" class="btn btn-primary">Crear</button>
                     {!! Form::close() !!}
                 </div>
